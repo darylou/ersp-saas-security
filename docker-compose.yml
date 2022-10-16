@@ -6,6 +6,7 @@ services:
     build: ./flask
     container_name: flask
     restart: always
+    image: darylou/flaskapp
     environment:
       - APP_NAME=MyFlaskApp
     expose:
@@ -15,5 +16,6 @@ services:
     build: ./nginx
     container_name: nginx
     restart: always
+    image: darylou/nginx
     ports:
       - "80:80"

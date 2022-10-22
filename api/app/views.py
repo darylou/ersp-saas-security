@@ -1,10 +1,22 @@
 from app import app
+from flask import abort, request
 
-@app.route("/")
-def index():
-    return "Hello from Flask in a container!"
+@app.get("/api/paste")
+def get_paste():
+    # user = request.form['user']
+
+    # TODO: Query database container for paste
+    title = "My Paste"
+    body = "This is my paste."
+    
+    return {
+        "title": title,
+        "body": body,
+    }
 
 
-@app.route("/messages")
-def test():
-    return "test"
+@app.post("/api/paste")
+def post_paste():
+    return {
+        "stub": "stub",
+    }

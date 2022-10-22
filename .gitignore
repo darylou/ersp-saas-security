@@ -1,1 +1,2 @@
-flask/app/venv
+api/venv
+api/__pycache__

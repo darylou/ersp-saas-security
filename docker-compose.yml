@@ -12,6 +12,15 @@ services:
     expose:
       - 8080
 
+  auth:
+    build: ./authenticate
+    container_name: auth
+    restart: always
+    environment:
+      - APP_NAME=auth
+    expose:
+      - 8081
+
   nginx:
     build: ./nginx
     container_name: nginx

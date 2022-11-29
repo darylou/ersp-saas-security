@@ -18,7 +18,7 @@ def get_paste():
     }
 
 
-@app.post("/api/paste")
+@app.post("/api/paste3")
 def post_paste():
     #username = request.form['username']
     #body = request.form['body']

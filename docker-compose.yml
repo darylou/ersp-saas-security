@@ -16,6 +16,7 @@ services:
     build: ./authenticate
     container_name: auth
     restart: always
+    image: darylou/auth
     environment:
       - APP_NAME=auth
     expose:

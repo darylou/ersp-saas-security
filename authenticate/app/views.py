@@ -44,8 +44,10 @@ def auth():
         return "Error: missing username or password"
 
     #parse request
-    user = request.args.get('user')
-    passw = request.args.get('passw')
+    # user = request.args.get('user')
+    # passw = request.args.get('passw')
+    user = "daryl"
+    passw = "12354125"
     to_filter = [user]
 
     # connect to db

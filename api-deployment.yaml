@@ -23,11 +23,13 @@ spec:
       labels:
         io.kompose.service: api
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - env:
             - name: APP_NAME
               value: api
           image: darylou/flaskapp
+          imagePullPolicy: "Always"
           name: api
           ports:
             - containerPort: 8080

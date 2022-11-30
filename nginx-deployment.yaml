@@ -23,8 +23,10 @@ spec:
       labels:
         io.kompose.service: nginx
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - image: darylou/nginx
+          imagePullPolicy: "Always"
           name: nginx
           ports:
             - containerPort: 80

@@ -1,5 +1,5 @@
 from app import app
-from flask import abort, request
+from flask import abort, request, jsonify
 import sqlite3
 
 @app.get("/api/paste")
@@ -13,9 +13,10 @@ def get_paste():
     res = cur.execute("SELECT * FROM pastes WHERE username = '" + username + "'")
     body = res.fetchall()[0][1]
     con.close()
-    return {
-        "body": body,
-    }
+
+    response = jsonify({"body": body})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.post("/api/paste3")

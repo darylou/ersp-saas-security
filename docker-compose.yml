@@ -9,6 +9,7 @@ services:
     image: darylou/flaskapp
     environment:
       - APP_NAME=api
+      #ADD DB_URL VAR HERE
     expose:
       - 8080
 
@@ -40,3 +41,14 @@ services:
       - 3000:3000
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "saas"
+      POSTGRES_PASSWORD: "saas"
+

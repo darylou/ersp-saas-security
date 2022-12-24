@@ -2,6 +2,7 @@ from app import app
 from flask import abort, request, jsonify, g, render_template, redirect, url_for
 import sqlite3
 import psycopg2
+import humanize
 
 def get_db():
     """
@@ -20,7 +21,7 @@ def close_db(error):
 
 @app.get('/api/db')
 def show_guestbook():
-    sql = """SELECT author,comment_text FROM guestbook;"""
+    sql = """SELECT author,comment_text,posted_at,id FROM guestbook order by posted_at DESC;"""
     cur = get_db().cursor()
     cur.execute(sql)
 
@@ -29,7 +30,9 @@ def show_guestbook():
         posts.append(
             {
                 'author': post_in_db[0],
-                'comment_text': post_in_db[1]
+                'comment_text': post_in_db[1],
+                'posted_at': humanize.naturaltime(post_in_db[2]),
+                'id': post_in_db[3]
             }
         )
         cur.close()
@@ -37,7 +40,7 @@ def show_guestbook():
 
 @app.route('/api/db/add', methods = ['POST'])
 def add_post():
-    sql = """INSERT INTO guestbook (author,comment_text) VALUES (%s,%s);"""
+    sql = """INSERT INTO guestbook (author,comment_text,posted_at) VALUES (%s,%s, now());"""
     db = get_db()
     cur = db.cursor()
     cur.execute(sql,(request.form['author'], request.form['comment_text']))
@@ -63,7 +66,7 @@ def get_paste():
     return response
 
 
-@app.post("/api/paste3")
+@app.post("/api/paste")
 def post_paste():
     # username = request.form['username']
     # body = request.form['body']

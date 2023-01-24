@@ -1,34 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import { useState } from 'react'
+import './App.css'
+import Draggable from 'react-draggable'
+import Sparkles from './components/Sparkles.js'
+import NotesList from './components/NotesList.js'
+import amongus from './imgs/amongus.png'
+import Arrow from './imgs/drag_sticker_arrow.svg'
 
 function App() {
+  const[prompt, setPrompt] = useState(true)
 
-  function handleClick() {
-    axios.get('http://127.0.0.1/api/paste').then(res => {
-      console.log(res.data)
-    })
-  };
+  function removePrompt() {
+    const newPrompt = false
+    setPrompt(newPrompt)
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button onClick={handleClick}>
-          Click Me!
-        </button>
-      </header>
+      <Draggable>
+        <img className='sticker amongus' src={amongus} alt='' draggable='false' onMouseDownCapture={removePrompt} />
+      </Draggable>
+      {prompt && 
+        <>
+        <span className='drag_prompt'>DRAG ME!</span>
+        <img className='drag_arrow' src={Arrow}/>
+        </>
+      }
+      <h1><Sparkles>My Notes</Sparkles></h1>
+      <NotesList />
     </div>
   );
 }

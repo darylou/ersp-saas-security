@@ -5,3 +5,4 @@ auth/__pycache__
 auth/sql.sql
 frontend/node_modules
 venv/
+postgres-data/

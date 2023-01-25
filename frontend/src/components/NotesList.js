@@ -50,7 +50,7 @@ export default function NotesList() {
             return {...item, title:t, content:c, isEditing:false}
         })
         
-        axios.post(`http://127.0.0.1/api/paste/${id}/${t}/${c}`, {
+        axios.post(`http://127.0.0.1:3030/api/paste/${id}/${t}/${c}`, {
             'id': id,
             'title': t,
             'body': c

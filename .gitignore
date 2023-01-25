@@ -4,3 +4,4 @@ auth/venv
 auth/__pycache__
 auth/sql.sql
 frontend/node_modules
+venv/

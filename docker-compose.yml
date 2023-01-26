@@ -33,6 +33,7 @@ services:
   frontend:
     container_name: frontend
     build: ./frontend
+    image: darylou/frontend
     volumes:
       - '.:/frontend'
     ports:
@@ -41,7 +42,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
   db:
-    image: postgres
+    build: ./postgres
+    image: darylou/postgres
     container_name: db
     restart: always
     ports:

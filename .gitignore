@@ -1,2 +1,8 @@
 api/venv
 api/__pycache__
+auth/venv 
+auth/__pycache__
+auth/sql.sql
+frontend/node_modules
+venv/
+postgres-data/

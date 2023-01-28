@@ -1,4 +1,5 @@
 # Use the Python:3.10.7 container image
+#FROM --platform=linux/amd64 python:3.10.7
 FROM python:3.10.7
 
 # Set the working directory to /app

@@ -23,7 +23,6 @@ def close_db(error):
 @app.get("/api/paste")
 def get_paste():
     db = get_db()
-    #con = sqlite3.connect("database.db")
     cur = db.cursor()
 
     cur.execute("SELECT * FROM pastes")
@@ -40,33 +39,36 @@ def get_paste():
     cur.close()
 
     response = jsonify(body)
-    #response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 
 @app.post("/api/paste/<paste_id>/<title>/<body>")
 def post_paste(paste_id, title, body):
     db = get_db()
-    #con = sqlite3.connect("database.db")
     cur = db.cursor()
 
-    cur.execute("SELECT * FROM Pastes WHERE id = '" + paste_id + "'")
-
+    cur.execute("SELECT * FROM pastes WHERE id = '" + paste_id + "'")
     
-    if len(cur.fetchall()) == 0:
-        
-        cur.execute("INSERT INTO Pastes (id, title, body) VALUES ('" + paste_id + "','"+ title + "','"+ body + "')")
-        
+    if len(cur.fetchall()) == 0: 
+        cur.execute("INSERT INTO pastes (id, title, body) VALUES ('" + paste_id + "','"+ title + "','"+ body + "')") 
     else:
-        cur.execute("UPDATE Pastes SET body = '" + body + "' WHERE id = '" + paste_id + "'")
-        cur.execute("UPDATE Pastes SET title = '" + title + "' WHERE id = '" + paste_id + "'")
+        cur.execute("UPDATE pastes SET body = '" + body + "' WHERE id = '" + paste_id + "'")
+        cur.execute("UPDATE pastes SET title = '" + title + "' WHERE id = '" + paste_id + "'")
     
     db.commit()
-
-
-
     cur.close()
     
-    response = jsonify({"status": 200})
-    #response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return jsonify({})
+
+@app.delete("/api/paste/<paste_id>")
+def delete_paste(paste_id):
+    db = get_db()
+    cur = db.cursor()
+
+    cur.execute("DELETE FROM pastes WHERE id = '" + paste_id + "'")
+
+    db.commit()
+
+    cur.close()
+
+    return jsonify({})

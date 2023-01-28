@@ -7,7 +7,7 @@ CREATE TABLE pastes (
     body varchar(255)
 );
 
-INSERT INTO pastes (id, title, body) VALUES ('id-001', 'first', 'first');
-INSERT INTO pastes (id, title, body) VALUES ('id-002', 'second', 'second');
-INSERT INTO pastes (id, title, body) VALUES ('id-003', 'third', 'third');
-INSERT INTO pastes (id, title, body) VALUES ('id-004', 'fourth', 'fourth');
+INSERT INTO pastes (id, title, body) VALUES ('id-001', 'Post 1', 'This is the first post in the DB');
+INSERT INTO pastes (id, title, body) VALUES ('id-002', 'Daryl Second Post', 'back again!');
+INSERT INTO pastes (id, title, body) VALUES ('id-003', 'ERSP', 'We are in winter quarter of ERSP');
+INSERT INTO pastes (id, title, body) VALUES ('id-004', 'BST', 'stands for binary search tree');

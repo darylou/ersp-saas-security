@@ -4,7 +4,7 @@ CREATE TABLE pastes (
     body varchar(255)
 );
 
-CREATE TABLE users (
-    username varchar(255) NOT NULL,
-    password varchar(255) NOT NULL
+CREATE TABLE accounts (
+    user varchar(255) NOT NULL,
+    passw varchar(255) NOT NULL
 );

@@ -1,7 +1,7 @@
 from app import app
 import sqlite3 
 import psycopg2
-from flask import request, jsonify, g
+from flask import abort, request, jsonify, g
 
 testAccounts = [
     {
@@ -35,11 +35,11 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-@app.get("/auth/create")
+@app.post("/auth/create")
 def create():
     #check if user and pass are passed correctly 
     if "user" not in request.args or "passw" not in request.args:
-        return "Error: missing username or password"
+        abort(400)
 
     #parse request
     user = request.args.get('user')
@@ -50,18 +50,18 @@ def create():
     conn.row_factory = dict_factory
     curs = conn.cursor()
 
-    res = curs.execute(query).fetchall()
+    curs.execute(query)
 
     conn.commit()
     curs.close()
 
-    return res 
+    return jsonify({})
 
 @app.get("/auth/auth")
 def auth():
     #check if user and pass are passed correctly 
     if "user" not in request.args or "passw" not in request.args:
-        return "Error: missing username or password"
+        abort(400)
 
     #parse request
     user = request.args.get('user')
@@ -71,17 +71,15 @@ def auth():
     to_filter = [user]
 
     # connect to db
-    query = "SELECT * FROM accounts WHERE user=?;"
+    query = "SELECT * FROM accounts WHERE user = {} AND passw = {};".format(user, passw)
     conn = get_db()
     conn.row_factory = dict_factory
     curs = conn.cursor()
 
     res = curs.execute(query, to_filter).fetchall()
 
-    if res['passw'] == passw:
-        res['auth'] = True 
-    else:
-        res['auth'] = False 
+    if not res:
+        abort(401)
 
     curs.close()
     

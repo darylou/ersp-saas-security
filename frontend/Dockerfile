@@ -1,6 +1,6 @@
 # pull official base image
-#FROM --platform=linux/amd64 node:13.12.0-alpine
-FROM node:13.12.0-alpine
+FROM --platform=linux/amd64 node:13.12.0-alpine
+#FROM node:13.12.0-alpine
 
 # set working directory
 WORKDIR /app

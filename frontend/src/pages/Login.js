@@ -24,7 +24,7 @@ function Login() {
         e.preventDefault()
         const post = { 
             'user': username,  
-            'passw': password
+            'passw': password 
         }
         try {
           const res = await axios.post('http://127.0.0.1:3030/auth/create', post)

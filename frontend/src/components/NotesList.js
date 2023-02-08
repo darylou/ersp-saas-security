@@ -45,9 +45,6 @@ export default function NotesList() {
             console.log("what")
         })
         return []
-        
-
-        
     }
 
     function addNote() {
@@ -84,7 +81,8 @@ export default function NotesList() {
 
         })
 
-        updateList() 
+        // Don't need to update here, use the get request instead
+        // updateList(newList) 
     }
 
     function deleteNote(id) {
@@ -97,7 +95,7 @@ export default function NotesList() {
 
     return (
         <div className='page_body'>
-            <button onClick={addNote}>Add Note</button>
+            <button className='btn' onClick={addNote}>Add Note</button>
             <div className='notes_list'>
                 {list.map((note) => (
                     <Note 

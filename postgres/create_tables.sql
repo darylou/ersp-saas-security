@@ -5,6 +5,8 @@ CREATE TABLE pastes (
 );
 
 CREATE TABLE accounts (
-    user varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
     passw varchar(255) NOT NULL
 );
+
+INSERT INTO ACCOUNTS (username, passw) VALUES ("Sparkles", "Sparkles");

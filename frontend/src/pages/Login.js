@@ -27,11 +27,12 @@ function Login() {
             'passw': password 
         }
         try {
-          const res = await axios.post('http://127.0.0.1:3030/auth/create', post)
-          console.log(res.data)
-          console.log("success")
+            const res = await axios.post(`http://127.0.0.1:3030/auth/create/${username}/${password}`, post)
+            console.log(res.data)
+            console.log("success")
         } catch (e) {
-          alert(e)
+            console.log("fail")
+            alert(e)
         }
       }
     

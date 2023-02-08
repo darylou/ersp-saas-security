@@ -35,17 +35,17 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-@app.post("/auth/create")
-def create():
+@app.post("/auth/create/<user>/<passw>")
+def create(user, passw):
     #check if user and pass are passed correctly 
-    if "user" not in request.args or "passw" not in request.args:
-        abort(400)
+    # if "user" not in request.args or "passw" not in request.args:
+    #     abort(400)
 
     #parse request
-    user = request.args.get('user')
-    passw = request.args.get('passw')
+    # user = request.args.get('user')
+    # passw = request.args.get('passw')
 
-    query = "INSERT INTO accounts (user, passw) VALUES ({}, {})".format(user, passw)
+    query = "INSERT INTO accounts (username, passw) VALUES ({}, {})".format(user, passw)
     conn = get_db()
     conn.row_factory = dict_factory
     curs = conn.cursor()
@@ -57,21 +57,21 @@ def create():
 
     return jsonify({})
 
-@app.get("/auth/auth")
-def auth():
+@app.get("/auth/auth/<user>/<passw>")
+def auth(user, passw):
     #check if user and pass are passed correctly 
-    if "user" not in request.args or "passw" not in request.args:
-        abort(400)
+    # if "user" not in request.args or "passw" not in request.args:
+    #     abort(400)
 
     #parse request
-    user = request.args.get('user')
-    passw = request.args.get('passw')
+    # user = request.args.get('user')
+    # passw = request.args.get('passw')
     # user = "daryl"
     # passw = "12354125"
-    to_filter = [user]
+    # to_filter = [user]
 
     # connect to db
-    query = "SELECT * FROM accounts WHERE user = {} AND passw = {};".format(user, passw)
+    query = "SELECT * FROM accounts WHERE username = {} AND passw = {};".format(user, passw)
     conn = get_db()
     conn.row_factory = dict_factory
     curs = conn.cursor()

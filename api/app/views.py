@@ -41,6 +41,11 @@ def get_paste():
     response = jsonify(body)
     return response
 
+@app.get("/api/test")
+def get_test():
+    response = jsonify({"status": 400})
+    return response
+
 
 @app.post("/api/paste/<paste_id>/<title>/<body>")
 def post_paste(paste_id, title, body):

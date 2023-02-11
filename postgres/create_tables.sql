@@ -9,4 +9,4 @@ CREATE TABLE accounts (
     passw varchar(255) NOT NULL
 );
 
-INSERT INTO ACCOUNTS (username, passw) VALUES ("Sparkles", "Sparkles");
+INSERT INTO ACCOUNTS (username, passw) VALUES ('Sparkles', 'Sparkles');

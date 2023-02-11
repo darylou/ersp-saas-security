@@ -45,9 +45,8 @@ def create(user, passw):
     # user = request.args.get('user')
     # passw = request.args.get('passw')
 
-    query = "INSERT INTO accounts (username, passw) VALUES ({}, {})".format(user, passw)
+    query = "INSERT INTO accounts (username, passw) VALUES ('{}', '{}')".format(user, passw)
     conn = get_db()
-    conn.row_factory = dict_factory
     curs = conn.cursor()
 
     curs.execute(query)
@@ -76,7 +75,9 @@ def auth(user, passw):
     conn.row_factory = dict_factory
     curs = conn.cursor()
 
-    res = curs.execute(query, to_filter).fetchall()
+    curs.execute(query)
+    
+    res = curs.fetchall()
 
     if not res:
         abort(401)

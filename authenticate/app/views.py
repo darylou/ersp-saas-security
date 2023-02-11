@@ -29,9 +29,8 @@ def create():
     user = request.args.get('user')
     passw = request.args.get('passw')
 
-    query = "INSERT INTO users (user, passw) VALUES ({}, {})".format(user, passw)
-    conn = sqlite3.connect('test.db')
-    conn.row_factory = dict_factory
+    query = "INSERT INTO accounts (username, passw) VALUES ('{}', '{}');".format(user, passw)
+    conn = get_db()
     curs = conn.cursor()
 
     res = curs.execute(query).fetchall()
@@ -51,12 +50,14 @@ def auth():
     to_filter = [user]
 
     # connect to db
-    query = "SELECT * FROM accounts WHERE user=?;"
-    conn = sqlite3.connect('test.db')
-    conn.row_factory = dict_factory
+
+    query = "SELECT * FROM accounts WHERE username = '{}' AND passw = '{}';".format(user, passw)
+    conn = get_db()
+
     curs = conn.cursor()
 
-    res = curs.execute(query, to_filter).fetchall()
+    curs.execute(query)
+    res = curs.fetchall()
 
     if res['passw'] == passw:
         res['auth'] = True 

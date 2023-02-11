@@ -7,7 +7,10 @@ CREATE TABLE pastes (
     body varchar(255)
 );
 
-INSERT INTO pastes (id, title, body) VALUES ('id-001', 'Post 1', 'This is the first post in the DB');
-INSERT INTO pastes (id, title, body) VALUES ('id-002', 'Daryl Second Post', 'back again!');
-INSERT INTO pastes (id, title, body) VALUES ('id-003', 'ERSP', 'We are in winter quarter of ERSP');
-INSERT INTO pastes (id, title, body) VALUES ('id-004', 'BST', 'stands for binary search tree');
+
+CREATE TABLE accounts (
+    username varchar(255) NOT NULL,
+    passw varchar(255) NOT NULL
+);
+
+INSERT INTO accounts (username, passw) VALUES ('Sparkles', 'Sparkles');

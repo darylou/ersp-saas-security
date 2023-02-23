@@ -70,9 +70,8 @@ def auth(user, passw):
     # to_filter = [user]
 
     # connect to db
-    query = "SELECT * FROM accounts WHERE username = {} AND passw = {};".format(user, passw)
+    query = "SELECT * FROM accounts WHERE username = '{}' AND passw = '{}';".format(user, passw)
     conn = get_db()
-    conn.row_factory = dict_factory
     curs = conn.cursor()
 
     curs.execute(query)

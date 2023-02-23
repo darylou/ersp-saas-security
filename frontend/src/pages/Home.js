@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import {useNavigate,useLocation} from 'react-router-dom'
 import Draggable from 'react-draggable'
 import Sparkles from '../components/Sparkles.js'
 import NotesList from '../components/NotesList.js'
@@ -7,6 +8,18 @@ import Arrow from '../imgs/drag_sticker_arrow.svg'
 
 function Home() {
     const[prompt, setPrompt] = useState(true)
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        try {
+            if (!location.state.authenticated) {
+                navigate("/")
+            }
+        } catch (error) {
+            navigate("/")
+        }
+    }, []);
 
     function removePrompt() {
         const newPrompt = false

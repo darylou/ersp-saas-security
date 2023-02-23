@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/tabs'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate();
     
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
@@ -15,9 +17,12 @@ function Login() {
     }
 
     function onLogin() {
-        // Do something here
-        // Show message if there's a login issue
-
+        axios.get(`http://127.0.0.1:3030/auth/auth/${username}/${password}`).then((res) => {
+            console.log("Success");
+            navigate("/pastes",{state:{authenticated:true}})
+        }).catch((err) => {
+            console.log("bad login")
+        })
     }
 
     const onRegister = async (e) => {
@@ -30,6 +35,7 @@ function Login() {
             const res = await axios.post(`http://127.0.0.1:3030/auth/create/${username}/${password}`, post)
             console.log(res.data)
             console.log("success")
+            navigate("/pastes",{state:{authenticated:true}})
         } catch (e) {
             console.log("fail")
             alert(e)
@@ -37,7 +43,7 @@ function Login() {
       }
     
     return (
-        <div className='login_container'>
+        <div className='login_container' style={{overflow: "clip"}}>
             <h1>GooBox</h1>
 
             <Tabs variant='unstyled'>

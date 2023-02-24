@@ -22,7 +22,7 @@ export default function NotesList() {
 
     function updateList() {
         var json, size;
-        axios.get("http://abrams.seclab.cs.ucsb.edu/api/paste").then((res) => {
+        axios.get("http://msa.seclab.cs.ucsb.edu/api/paste").then((res) => {
             json = JSON.parse(JSON.stringify(res.data))
             size = Object.keys(res.data).length
 
@@ -71,7 +71,7 @@ export default function NotesList() {
             return {...item, title:t, content:c, isEditing:false}
         })
         
-        axios.post(`http://abrams.seclab.cs.ucsb.edu/api/paste/${id}/${t}/${c}`, {
+        axios.post(`http://msa.seclab.cs.ucsb.edu/api/paste/${id}/${t}/${c}`, {
             'id': id,
             'title': t,
             'body': c
@@ -87,7 +87,7 @@ export default function NotesList() {
     }
 
     function deleteNote(id) {
-        axios.delete(`http://abrams.seclab.cs.ucsb.edu/api/paste/${id}`).catch((err) => {
+        axios.delete(`http://msa.seclab.cs.ucsb.edu/api/paste/${id}`).catch((err) => {
             console.log(err)
         }).finally(
             updateList()

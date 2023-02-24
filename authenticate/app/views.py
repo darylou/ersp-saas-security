@@ -2,6 +2,7 @@ from app import app
 import sqlite3 
 import psycopg2
 from flask import abort, request, jsonify, g
+from flask_cors import CORS, cross_origin
 
 testAccounts = [
     {
@@ -36,6 +37,7 @@ def dict_factory(cursor, row):
     return d
 
 @app.post("/auth/create/<user>/<passw>")
+@cross_origin(supports_credentials=True)
 def create(user, passw):
     #check if user and pass are passed correctly 
     # if "user" not in request.args or "passw" not in request.args:
@@ -57,6 +59,7 @@ def create(user, passw):
     return jsonify({})
 
 @app.get("/auth/auth/<user>/<passw>")
+@cross_origin(supports_credentials=True)
 def auth(user, passw):
     #check if user and pass are passed correctly 
     # if "user" not in request.args or "passw" not in request.args:

@@ -1,5 +1,6 @@
 from app import app
 from flask import abort, request, jsonify, g
+from flask_cors import CORS, cross_origin
 import sqlite3
 import psycopg2
 import humanize
@@ -21,6 +22,7 @@ def close_db(error):
         g.db.close()
 
 @app.get("/api/paste")
+@cross_origin(supports_credentials=True)
 def get_paste():
     db = get_db()
     cur = db.cursor()
@@ -43,6 +45,7 @@ def get_paste():
 
 
 @app.post("/api/paste/<paste_id>/<title>/<body>")
+@cross_origin(supports_credentials=True)
 def post_paste(paste_id, title, body):
     db = get_db()
     cur = db.cursor()
@@ -61,6 +64,7 @@ def post_paste(paste_id, title, body):
     return jsonify({})
 
 @app.delete("/api/paste/<paste_id>")
+@cross_origin(supports_credentials=True)
 def delete_paste(paste_id):
     db = get_db()
     cur = db.cursor()

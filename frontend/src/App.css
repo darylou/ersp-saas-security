@@ -252,3 +252,16 @@ textarea {
   padding: 0;
   cursor: pointer;
 }
+
+/* Logout */
+.logout {
+  text-decoration: underline;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color:rgb(91, 91, 91);
+}

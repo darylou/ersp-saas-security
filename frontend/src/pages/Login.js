@@ -76,6 +76,9 @@ function Login() {
                 </TabPanel>
             </TabPanels>
             </Tabs>
+
+            <br/>
+            <p>Note: please do not input any sensitive or personal information into this application. All accounts and data will be periodically destroyed to ensure safety.</p>
         </div>
     )
 }

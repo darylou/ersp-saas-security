@@ -26,6 +26,10 @@ function Home() {
         setPrompt(newPrompt)
     }
 
+    function logout() {
+        navigate("/",{state:{authenticated:false}})
+    }
+
     return (
         <div className='home'>
             <Draggable>
@@ -37,7 +41,10 @@ function Home() {
                 <img className='drag_arrow' src={Arrow}/>
             </>
             }
-            <h1><Sparkles>My Notes</Sparkles></h1>
+            <div className='header'>
+                <h1><Sparkles>My Notes</Sparkles></h1>
+                <p className='logout' onClick={logout}>Logout</p>
+            </div>
             <NotesList />
         </div>
     )

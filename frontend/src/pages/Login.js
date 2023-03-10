@@ -17,7 +17,7 @@ function Login() {
     }
 
     function onLogin() {
-        axios.get(`http://127.0.0.1:3030/auth/auth/${username}/${password}`).then((res) => {
+        axios.get(`http://msa.seclab.cs.ucsb.edu/auth/auth/${username}/${password}`).then((res) => {
             console.log("Success");
             navigate("/pastes",{state:{authenticated:true}})
         }).catch((err) => {
@@ -32,7 +32,7 @@ function Login() {
             'passw': password 
         }
         try {
-            const res = await axios.post(`http://127.0.0.1:3030/auth/create/${username}/${password}`, post)
+            const res = await axios.post(`http://msa.seclab.cs.ucsb.edu/auth/create/${username}/${password}`, post)
             console.log(res.data)
             console.log("success")
             navigate("/pastes",{state:{authenticated:true}})

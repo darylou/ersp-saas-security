@@ -60,7 +60,7 @@ function Login() {
                 <p>Password</p>
                 <input id='password' onChange={handlePasswordChange}/>
                 <br />
-                <button className='btn' onClick={onLogin}>Submit</button>
+                <button id='login' className='btn' onClick={onLogin}>Submit</button>
                 </div>
                 </TabPanel>
 
@@ -71,7 +71,7 @@ function Login() {
                 <p>Password</p>
                 <input id='password' onChange={handlePasswordChange}/>
                 <br />
-                <button className='btn' onClick={onRegister}>Submit</button>
+                <button id='createAccount' className='btn' onClick={onRegister}>Submit</button>
                 </div>
                 </TabPanel>
             </TabPanels>

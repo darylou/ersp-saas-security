@@ -43,7 +43,7 @@ function Home() {
             }
             <div className='header'>
                 <h1><Sparkles>My Notes</Sparkles></h1>
-                <p className='logout' onClick={logout}>Logout</p>
+                <p id='logout' className='logout' onClick={logout}>Logout</p>
             </div>
             <NotesList />
         </div>

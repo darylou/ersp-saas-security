@@ -98,7 +98,7 @@ export default function NotesList() {
 
     return (
         <div className='page_body'>
-            <button className='btn' onClick={addNote}>Add Note</button>
+            <button id='addNote' className='btn' onClick={addNote}>Add Note</button>
             <div className='notes_list'>
                 {list.map((note) => (
                     <Note 

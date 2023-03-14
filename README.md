@@ -9,4 +9,4 @@ GooBox is hosted on msa.seclab.cs.ucsb.edu on k3s. There are NodePorts exposed f
 <br>
 Kiali, the monitoring page, can only be accessed via VPN or on seclab wifi. It is on http://msa.seclab.cs.ucsb.edu:31822/kiali.
 ## Deployment
-SSH into user@msa.seclab.cs.ucsb.edu. Delete any old deployment/service/persistent volume claim of the application. Reapply the goo-box.yaml file.
+SSH into user@msa.seclab.cs.ucsb.edu. Delete any old deployment/service/persistent volume claim of the application. Reapply the goo-box2.yaml file. DO NOT APPLY THE goo-box1.yaml file.

@@ -22,7 +22,7 @@ export default function NotesList() {
 
     function updateList() {
         var json, size;
-        axios.get("http://127.0.0.1:3030/api/paste").then((res) => {
+        axios.get("http://msa.seclab.cs.ucsb.edu/api/paste").then((res) => {
             json = JSON.parse(JSON.stringify(res.data))
             size = Object.keys(res.data).length
 
@@ -45,9 +45,6 @@ export default function NotesList() {
             console.log("what")
         })
         return []
-        
-
-        
     }
 
     function addNote() {
@@ -74,30 +71,34 @@ export default function NotesList() {
             return {...item, title:t, content:c, isEditing:false}
         })
         
-        axios.post(`http://127.0.0.1:3030/api/paste/${id}/${t}/${c}`, {
+        axios.post(`http://msa.seclab.cs.ucsb.edu/api/paste/${id}/${t}/${c}`, {
             'id': id,
             'title': t,
             'body': c
         }).then(res => {
             console.log(res.data)
+            window.location.reload(false);
         }).catch(err => {
 
         })
 
-        updateList() 
+        // Don't need to update here, use the get request instead
+        // updateList(newList) 
     }
 
     function deleteNote(id) {
-        axios.delete(`http://127.0.0.1:3030/api/paste/${id}`).catch((err) => {
+        axios.delete(`http://msa.seclab.cs.ucsb.edu/api/paste/${id}`).catch((err) => {
             console.log(err)
         }).finally(
             updateList()
+            
         )
+        window.location.reload(false);
     }
 
     return (
         <div className='page_body'>
-            <button onClick={addNote}>Add Note</button>
+            <button id='addNote' className='btn' onClick={addNote}>Add Note</button>
             <div className='notes_list'>
                 {list.map((note) => (
                     <Note 

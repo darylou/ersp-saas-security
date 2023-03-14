@@ -1,6 +1,6 @@
 # pull official base image
-#FROM --platform=linux/amd64 node:13.12.0-alpine
-FROM node:13.12.0-alpine
+FROM --platform=linux/amd64 node:13.12.0-alpine
+#FROM node:13.12.0-alpine
 
 # set working directory
 WORKDIR /app
@@ -12,6 +12,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
+RUN npm install @chakra-ui/system
 RUN npm install react-scripts@3.4.1 -g
 
 # add app

@@ -35,7 +35,7 @@ export default function EditNote({note, id, saveNote}) {
                 <div>
                     <textarea className='note_editor_content_editor' id='content' type='text' defaultValue={note.content} onChange={handleContentChange}/>
                 </div>
-                <button className="save_btn" onClick={() => saveNote(id, title, content)}>Save</button>
+                <button id="saveNote" className="btn" onClick={() => saveNote(id, title, content)}>Save</button>
             </div>
         </div>
         </div>)

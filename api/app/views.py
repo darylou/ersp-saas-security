@@ -21,13 +21,13 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close()
 
-@app.get("/api/paste")
+@app.get("/api/paste/<user_id>")
 @cross_origin(supports_credentials=True)
 def get_paste():
     db = get_db()
     cur = db.cursor()
 
-    cur.execute("SELECT * FROM pastes")
+    cur.execute("SELECT * FROM pastes where id = '" + user_id + "'")
 
     counter = 0;
     body = {}

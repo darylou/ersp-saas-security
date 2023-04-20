@@ -15,6 +15,7 @@ function getRandomColor() {
 export default function NotesList() {
 
     const[list, setList] = useState([])
+    let username = this.state.username;
 
     useEffect(() => {
         updateList()
@@ -22,7 +23,7 @@ export default function NotesList() {
 
     function updateList() {
         var json, size;
-        axios.get("http://127.0.0.1:3030/api/paste").then((res) => {
+        axios.get(`http://127.0.0.1:3030/api/paste/${username}`).then((res) => {
             json = JSON.parse(JSON.stringify(res.data))
             size = Object.keys(res.data).length
 
@@ -71,7 +72,8 @@ export default function NotesList() {
             return {...item, title:t, content:c, isEditing:false}
         })
         
-        axios.post(`http://127.0.0.1:3030/api/paste/${id}/${t}/${c}`, {
+        axios.post(`http://127.0.0.1:3030/api/paste/${username}/${id}/${t}/${c}`, {
+            'username':username,
             'id': id,
             'title': t,
             'body': c

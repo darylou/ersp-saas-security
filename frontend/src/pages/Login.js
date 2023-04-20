@@ -2,8 +2,11 @@ import React, { useState } from "react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/tabs'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import { UserContext } from './App.js'
 
 function Login() {
+    const {user, setUser} = useContext(UserContext);
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
@@ -18,8 +21,14 @@ function Login() {
 
     function onLogin() {
         axios.get(`http://127.0.0.1:3030/auth/auth/${username}/${password}`).then((res) => {
+            setUser(username); // UNIQUE USERNAME
             console.log("Success");
-            navigate("/pastes",{state:{authenticated:true}})
+            navigate("/pastes",{
+                state:{
+                    authenticated:true,
+                    user:username
+                }
+            })
         }).catch((err) => {
             console.log("bad login")
         })

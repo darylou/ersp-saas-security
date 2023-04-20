@@ -47,16 +47,30 @@ def create(user, passw):
     # user = request.args.get('user')
     # passw = request.args.get('passw')
 
-    query = "INSERT INTO accounts (username, passw) VALUES ('{}', '{}')".format(user, passw)
     conn = get_db()
     curs = conn.cursor()
 
+    query = "SELECT * FROM accounts WHERE username = '{}';".format(user)
+
     curs.execute(query)
+    res = curs.fetchall()
 
-    conn.commit()
-    curs.close()
+    if res:
+        
+        curs.close()
 
-    return jsonify({})
+        return abort(409)
+    
+    else:
+
+        query = "INSERT INTO accounts (username, passw) VALUES ('{}', '{}')".format(user, passw)
+
+        curs.execute(query)
+
+        conn.commit()
+        curs.close()
+
+        return jsonify({})
 
 @app.get("/auth/auth/<user>/<passw>")
 @cross_origin(supports_credentials=True)

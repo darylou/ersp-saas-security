@@ -15,9 +15,11 @@ function getRandomColor() {
 export default function NotesList() {
 
     const[list, setList] = useState([])
-    let username = this.state.username;
+    const[username, setUsername] = useState("")
+    //let username = this.state.username;
 
     useEffect(() => {
+        setUsername(this.state.username)
         updateList()
         },[]);
 

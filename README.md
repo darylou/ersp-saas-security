@@ -5,8 +5,8 @@ GooBox consists of 5 containers: api, auth, nginx, db, frontend.
 <br>
 The api container handles all the paste logic. The auth container handles all the authentication logic. The db container stores all paste and authentication data. NGINX proxies requests to either the api or auth. Frontend container contains the react app.
 ## Hosting
-GooBox is hosted on msa.seclab.cs.ucsb.edu on k3s. There are NodePorts exposed for NGINX, frontend and kiali. Check the services in Kubernetes to find the exact port.
+There are NodePorts exposed for NGINX, frontend and kiali. Check the services in Kubernetes to find the exact port.
 <br>
 Kiali, the monitoring page, can only be accessed via VPN or on seclab wifi. It is on http://msa.seclab.cs.ucsb.edu:31822/kiali.
 ## Deployment
-SSH into user@msa.seclab.cs.ucsb.edu. Delete any old deployment/service/persistent volume claim of the application. Reapply the goo-box2.yaml file. DO NOT APPLY THE goo-box1.yaml file.
+Delete any old deployment/service/persistent volume claim of the application. Reapply the goo-box2.yaml file. DO NOT APPLY THE goo-box1.yaml file.
